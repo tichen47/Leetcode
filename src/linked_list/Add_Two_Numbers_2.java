@@ -47,13 +47,4 @@ public class Add_Two_Numbers_2 {
         return ret.next;
     }
 
-    // Definition for singly-linked list
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 }
