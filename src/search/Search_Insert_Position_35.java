@@ -1,4 +1,4 @@
-package binary_search;
+package search;
 
 public class Search_Insert_Position_35 {
     /*
