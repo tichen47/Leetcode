@@ -1,4 +1,4 @@
-package search;
+package hash_table;
 
 import java.util.*;
 
