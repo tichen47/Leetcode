@@ -15,7 +15,6 @@ public class Four_Sum_18 {
         
         for(int i = 0; i < nums.length-3; i++){
             if (i != 0 && nums[i] == nums[i-1]) continue;
-            
             int[] temp = Arrays.copyOfRange(nums, i + 1, nums.length);
             threeSum(ret, nums[i], temp, target - nums[i]);
         }
