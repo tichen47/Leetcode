@@ -6,7 +6,7 @@ public class Contains_Duplicate_III_220 {
     
     /*
      * Sliding Window
-     * Time Complexity: O(N) 
+     * Time Complexity: O(NlogN) 
      * Space Complexity: O(k)
      */
     public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
