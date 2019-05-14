@@ -5,9 +5,9 @@ import java.util.*;
 public class Valid_Parentheses_20 {
 
     /*
-     * Solution: Stack Time 
-     * Complexity: O(N) 
-     * Space Complexity: O(1)
+     * Solution: Stack 
+     * Time Complexity: O(N) 
+     * Space Complexity: O(N)
      */
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<Character>();
@@ -25,7 +25,12 @@ public class Valid_Parentheses_20 {
         }
         return stack.isEmpty();
     }
-
+    
+    /*
+     * Solution: Stack and HashMap
+     * Time Complexity: O(N) 
+     * Space Complexity: O(N)
+     */
     public boolean isValid2(String s) {
         Map<Character, Character> map = new HashMap<>();
         map.put(')', '(');
