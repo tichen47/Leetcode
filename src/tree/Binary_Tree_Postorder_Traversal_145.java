@@ -3,7 +3,7 @@ package tree;
 import java.util.*;
 
 public class Binary_Tree_Postorder_Traversal_145 {
-    
+
     /*
      * Solution: Recursive 
      * Time Complexity: O(N) 
@@ -21,5 +21,28 @@ public class Binary_Tree_Postorder_Traversal_145 {
         helper(ls, root.left);
         helper(ls, root.right);
         ls.add(root.val);
+    }
+
+    /*
+     * Solution 2: Iterative 
+     * Time Complexity: O(N) 
+     * Space Complexity: O(N)
+     */
+    public List<Integer> postorderTraversal2(TreeNode root) {
+        List<Integer> ret = new ArrayList<>();
+        Stack<TreeNode> s = new Stack<>();
+        TreeNode p = root;
+
+        while (!s.isEmpty() || p != null) {
+            if (p != null) {
+                s.push(p);
+                ret.add(0, p.val);
+                p = p.right; // Reverse of preorder
+            } else {
+                TreeNode node = s.pop();
+                p = node.left; // Reverse of preorder
+            }
+        }
+        return ret;
     }
 }

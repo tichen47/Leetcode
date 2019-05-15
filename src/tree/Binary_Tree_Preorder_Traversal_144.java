@@ -56,14 +56,16 @@ public class Binary_Tree_Preorder_Traversal_144 {
         List<Integer> ret = new ArrayList<>();
         Stack<TreeNode> s = new Stack<>();
         TreeNode p = root;
-
-        while (!s.isEmpty() || p != null) {
-            if (p != null) {
-                s.push(p.right);
+        
+        while(!s.isEmpty() || p != null){
+            if(p != null){
+                s.push(p);
                 ret.add(p.val);
                 p = p.left;
-            } else {
-                p = s.pop();
+            }
+            else{
+                TreeNode node = s.pop();
+                p = node.right;
             }
         }
         return ret;
