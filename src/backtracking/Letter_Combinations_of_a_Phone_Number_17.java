@@ -7,8 +7,8 @@ public class Letter_Combinations_of_a_Phone_Number_17 {
      * Solution: Backtracking
      * Time Complexity: O(3^N * 4^M) 
      * Space Complexity: O(3^N * 4 ^M)
-     * N: 2,3,4,5,6,8
-     * M: 7,9
+     *  N: 2,3,4,5,6,8
+     *  M: 7,9
      */  
     private static final String[] KEYS = { "", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz" };
     
