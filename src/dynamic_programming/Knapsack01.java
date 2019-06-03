@@ -47,7 +47,9 @@ public class Knapsack01 {
     }
 
     /*
-     * DP
+     * Solution: DP 
+     * Time Complexity: O(N * C) 
+     * Space Complexity: O(N * C)
      */
     public int knapsack2(int[] w, int[] v, int C) {
         int n = w.length;
@@ -63,12 +65,34 @@ public class Knapsack01 {
                 dp[i][j] = dp[i - 1][j];
 
                 // If put current item
-                if (w[i] <= j) {  // j is the current capacity
+                if (w[i] <= j) { // j is the current capacity
                     dp[i][j] = Math.max(dp[i][j], v[i] + dp[i - 1][j - w[i]]);
                 }
             }
         }
         return dp[n - 1][C];
+    }
+
+    /*
+     * Solution: DP 
+     * Time Complexity: O(N * C) 
+     * Space Complexity: O(C)
+     */
+    public int knapsack3(int[] w, int[] v, int C) {
+        int n = w.length;
+        int[] dp = new int[C + 1];
+
+        for (int i = 0; i <= C; i++) {
+            dp[i] = w[0] <= i ? v[0] : 0;
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = C; j >= 0; j--) {
+                if (w[i] <= j)
+                    dp[j] = Math.max(dp[j], v[i] + dp[j - w[i]]);
+            }
+        }
+        return dp[C];
     }
 
     public static void main(String[] args) {
@@ -82,8 +106,12 @@ public class Knapsack01 {
         int ans = k.knapsack(w, v, C);
         System.out.println(ans);
 
-        // Test: DP
+        // Test: DP 1
         int ans2 = k.knapsack2(w, v, C);
         System.out.println(ans2);
+
+        // Test: DP 2
+        int ans3 = k.knapsack3(w, v, C);
+        System.out.println(ans3);
     }
 }
