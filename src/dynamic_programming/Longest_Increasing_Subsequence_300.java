@@ -69,8 +69,10 @@ public class Longest_Increasing_Subsequence_300 {
         int len = 0;
         
         for(int num : nums){
+            // BinarySearch: return positive value if found, negative value if not found
+            // If not found, the insert position is -(i+1)
             int i = Arrays.binarySearch(dp, 0, len, num);
-            if(i < 0){
+            if(i < 0){ 
                 i = -(i + 1);
             }
             dp[i] = num;
