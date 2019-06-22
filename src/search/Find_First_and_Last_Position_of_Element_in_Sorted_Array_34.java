@@ -1,7 +1,11 @@
 package search;
 
 public class Find_First_and_Last_Position_of_Element_in_Sorted_Array_34 {
-    // Binary Search
+    /*
+     * Solution: Binary Search
+     * Time Complexity: O(logN) 
+     * Space Complexity: O(1)
+     */
     public int[] searchRange(int[] nums, int target) {
         // Find target in nums[i, j]
         if(nums.length < 1) return new int[]{-1, -1};
