@@ -1,13 +1,30 @@
 package search;
 
 public class Sqrt_X_69 {
-    
     /*
      * Solution: Binary Search
      * Time Complexity: O(log2(N))
      * Space Complexity: O(1)
      */
     public int mySqrt(int x) {
+        if(x <= 0) return 0;
+        
+        int lo = 1, hi = x;
+        while(lo <= hi){
+            int mid = lo + (hi - lo) / 2;
+            if(mid == x / mid) return mid;
+            else if(mid > x / mid) hi = mid - 1;
+            else lo = mid + 1;
+        }
+        return hi;
+    }
+    
+    /*
+     * Solution: Binary Search
+     * Time Complexity: O(log2(N))
+     * Space Complexity: O(1)
+     */
+    public int mySqrt1(int x) {
         if(x == 0) return 0;
         int l = 1, r = x;
         while(l <= r){
@@ -40,4 +57,6 @@ public class Sqrt_X_69 {
         }
         return (int)k;
     }
+    
+    
 }
