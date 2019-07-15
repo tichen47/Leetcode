@@ -9,19 +9,19 @@ public class Remove_Nth_Node_From_End_of_List_19 {
     public ListNode removeNthFromEnd(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
-        ListNode walk = dummy;
-        ListNode run = dummy;
+        ListNode slow = dummy;
+        ListNode fast = dummy;
         
-        for(int i = 0; i < n; i++){
-            run = run.next;  // Assume n always be valid
+        for(int i = 0; i < n; i++)
+            fast = fast.next;
+    
+        while(fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
         }
         
-        while(run.next != null){
-            walk = walk.next;
-            run = run.next;
-        }
+        slow.next = slow.next.next;
         
-        walk.next = walk.next.next;  // Delete node
         return dummy.next;
     }
 }
