@@ -6,27 +6,24 @@ public class Rotate_List_61 {
      * Space Complexity: O(1)
      */
     public ListNode rotateRight(ListNode head, int k) {
-        if (head == null)
-            return null;
+        if(head == null) return head;
+        
+        ListNode tail = head;
         int len = 1;
-        ListNode p = head;
-
-        // Get the length of the linked list
-        while (p.next != null) {
+        while(tail.next != null){
+            tail = tail.next;
             len++;
-            p = p.next;
         }
-
-        // Make the linked-list as a cycle
-        p.next = head;
-
-        // Find the tail of new list
-        for (int i = 0; i < (len - k % len - 1); i++) {
-            head = head.next;
+        tail.next = head;
+        
+        int step = len - k % len;
+        ListNode end = tail;
+        for(int i = 0; i < step; i++){
+            end = end.next;
         }
-
-        ListNode ret = head.next;
-        head.next = null;
-        return ret;
+        
+        ListNode start = end.next;
+        end.next = null;
+        return start;
     }
 }
