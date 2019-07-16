@@ -28,9 +28,9 @@ public class Reverse_Linked_List_206 {
      */
     public ListNode reverseList2(ListNode head) {
         if(head == null || head.next == null) return head;
-        ListNode p = reverseList(head.next);
+        ListNode newHead = reverseList2(head.next);
         head.next.next = head;
         head.next = null;
-        return p;
+        return newHead;
     }
 }
