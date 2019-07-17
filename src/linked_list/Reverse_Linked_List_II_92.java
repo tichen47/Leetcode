@@ -33,4 +33,24 @@ public class Reverse_Linked_List_II_92 {
         
         return dummy.next;
     }
+    
+    // 2nd try
+    public ListNode reverseBetween2(ListNode head, int m, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        
+        ListNode start = dummy;
+        for(int i = 1; i < m; i++) 
+            start = start.next;
+        
+        ListNode pre = start.next;
+        for(int i = 0; i < n - m; i++){
+            ListNode cur = pre.next;
+            pre.next = cur.next;
+            cur.next = start.next;
+            start.next = cur;
+        }
+        
+        return dummy.next;
+    }
 }
