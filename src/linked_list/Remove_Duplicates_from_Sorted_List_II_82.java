@@ -11,22 +11,17 @@ public class Remove_Duplicates_from_Sorted_List_II_82 {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         ListNode pre = dummy;
-
-        int cur = Integer.MAX_VALUE;
-        while (pre.next != null && pre.next.next != null) {
-            if (pre.next.val == cur) {
-                pre.next = pre.next.next;
-            } else if (pre.next.val == pre.next.next.val) {
-                cur = pre.next.val;
-                pre.next = pre.next.next.next;
-            } else {
-                pre = pre.next;
-                cur = pre.val;
+        
+        while(pre.next != null && pre.next.next != null){
+            if(pre.next.val == pre.next.next.val){
+                ListNode temp = pre.next;
+                while(temp.next != null && temp.next.val == temp.val){
+                    temp = temp.next;
+                }
+                pre.next = temp.next;
             }
+            else pre = pre.next;
         }
-
-        if (pre.next != null && pre.next.val == cur)
-            pre.next = null;
         return dummy.next;
     }
 
