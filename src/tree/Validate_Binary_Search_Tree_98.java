@@ -9,20 +9,23 @@ public class Validate_Binary_Search_Tree_98 {
      * Space Complexity: O(N)
      */
     public boolean isValidBST(TreeNode root) {
-        return helper(root, null, null);
+        return isValidBST(root, null, null);
     }
     
-    public boolean helper(TreeNode root, Integer low, Integer high){
+    /*
+     * Use Integer instead of int for max and min
+     * Reason: If we use int, initial value will be Integer.MAX_VALUE and Integer.MIN_VALUE
+     * Result may be wrong if val = Integer.MAX_VALUE or Integer.MIN_VALUE 
+     */
+    public boolean isValidBST(TreeNode root, Integer max, Integer min){
         if(root == null) return true;
         
-        int val = root.val;
-        if(low != null && val <= low) return false;
-        if(high != null && val >= high) return false;
+        if((max != null && root.val >= max) 
+           || (min != null && root.val <= min)) return false;
         
-        if(!helper(root.left, low, val)) return false;
-        if(!helper(root.right, val, high)) return false;
-        
-        return true;
+        boolean isValidLeft = isValidBST(root.left, root.val, min);
+        boolean isValidRight = isValidBST(root.right, max, root.val);
+        return isValidLeft && isValidRight;
     }
     
     
@@ -31,36 +34,21 @@ public class Validate_Binary_Search_Tree_98 {
      * Time Complexity: O(N) 
      * Space Complexity: O(N)
      */
-    Stack<TreeNode> stack;
-    Stack<Integer> low;;
-    Stack<Integer> high;
-    
     public boolean isValidBST2(TreeNode root) {
         if(root == null) return true;
-
-        stack = new Stack<>();
-        low = new Stack<>();
-        high = new Stack<>();
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        Integer min = null;
         
-        update(root, null, null);
-        
-        while(!stack.isEmpty()){
-            TreeNode node = stack.pop();
-            Integer lowValue = low.pop();
-            Integer highValue = high.pop();
-            
-            if(lowValue != null && node.val <= lowValue) return false;
-            if(highValue != null && node.val >= highValue) return false;
-            
-            if(node.left != null) update(node.left, lowValue, node.val);
-            if(node.right != null) update(node.right, node.val, highValue);
+        while((!stack.isEmpty()) || root != null){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if(min != null && root.val <= min) return false;
+            min = root.val;
+            root = root.right;
         }
         return true;
-    }
-    
-    public void update(TreeNode node, Integer lowValue, Integer highValue){
-        stack.push(node);
-        low.push(lowValue);
-        high.push(highValue);
     }
 }
