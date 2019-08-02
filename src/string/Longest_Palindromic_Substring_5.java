@@ -7,28 +7,24 @@ public class Longest_Palindromic_Substring_5 {
      * Space Complexity: O(1)
      */ 
     public String longestPalindrome(String s) {
-        if(s == null || s.length() < 1) return "";
+        int len = s.length();
+        int[] index = new int[2]; // index[0]: start, index[1]: end
         
-        int start = 0, end = 0;
-        for(int i = 0; i < s.length(); i++){
-            int len1 = expandAroundCenter(s, i, i);
-            int len2 = expandAroundCenter(s, i, i+1);
-            int len = Math.max(len1, len2);
-            if(len > end - start){
-                start = i - (len - 1) / 2;
-                end = i + len / 2;
-            }            
+        for(int i = 0; i < len; i++){
+            expandAroundCenter(s, len, i, i, index);
+            expandAroundCenter(s, len, i, i+1, index);
         }
-        return s.substring(start, end+1);
+        return s.substring(index[0], index[1]);
     }
-               
-    private int expandAroundCenter(String s, int left, int right){
-        int l = left, r = right;
-        while(l >= 0 && r < s.length()){
-            if(s.charAt(l) != s.charAt(r)) break;
-            l--;
-            r++;
+    
+    public void expandAroundCenter(String s, int len, int p, int q, int[] index){
+        while(p >= 0 && q < len && s.charAt(p) == s.charAt(q)){
+            p--; 
+            q++;
         }
-        return r - l - 1;
+        if(q - (p + 1) > index[1] - index[0]){
+            index[0] = p + 1;
+            index[1] = q;
+        }
     }
 }
