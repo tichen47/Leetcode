@@ -9,24 +9,22 @@ public class Permutations_46 {
      * Space Complexity: O(N!)
      */ 
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> ret = new ArrayList<>();
-        List<Integer> numLs = new ArrayList<>();
-        for(int num : nums)
-            numLs.add(num);
-        
-        helper(ret, numLs, 0, nums.length);
-        return ret;
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> cur = new ArrayList<>();
+        for(int num : nums) cur.add(num);
+        backtracking(res, cur, 0, nums.length);
+        return res;
     }
     
-    public void helper(List<List<Integer>> ret, List<Integer> numLs, int index, int len){
-        if(index == len - 1){
-            ret.add(new ArrayList<Integer>(numLs));
+    public void backtracking(List<List<Integer>> res, List<Integer> cur, int start, int len){
+        if(start == len - 1)
+            res.add(new ArrayList<>(cur));
+        
+        for(int i = start; i < len; i++){
+            Collections.swap(cur, start, i);
+            backtracking(res, cur, start+1, len);
+            Collections.swap(cur, start, i);            
         }
-        for(int i = index; i < len; i++){
-            Collections.swap(numLs, i, index);
-            helper(ret, numLs, index + 1, len);
-            Collections.swap(numLs, i, index);
-        }    
     }
     
     /*
