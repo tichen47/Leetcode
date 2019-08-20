@@ -38,4 +38,24 @@ public class Permutations_II_47 {
             numLs.remove(start);
         }
     }
+    
+    /*
+     * Solution: BFS
+     * Time Complexity: O(N*2^N) 
+     * Space Complexity: O(N)
+     */ 
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>());
+        
+        for(int num : nums){
+            int curLen = res.size();
+            for(int i = 0; i < curLen; i++){
+                List<Integer> tempLs = new ArrayList<>(res.get(i));
+                tempLs.add(num);
+                res.add(tempLs);
+            }
+        }
+        return res;
+    }
 }
