@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Subsets_II_90 {
     /*
-     * Solution: Backtracking DFS
+     * Solution: DFS
      * Time Complexity:  O(2^N): total 2^n possible subsets can be there for n items
-     * Space Complexity: O(2^N)
+     * Space Complexity: O(N)
      */ 
     List<List<Integer>> ret;
     List<Integer> path;
@@ -33,7 +33,7 @@ public class Subsets_II_90 {
     /*
      * Solution: BFS
      * Time Complexity:  O(2^N): total 2^n possible subsets can be there for n items
-     * Space Complexity: O(2^N) 
+     * Space Complexity: O(N)
      */ 
     public List<List<Integer>> subsetsWithDup2(int[] nums) {
         Arrays.sort(nums);

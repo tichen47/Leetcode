@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Combination_Sum_III_216 {
     /*
-     * Solution: Backtracking
+     * Solution: DFS
      * Time Complexity: O(9^k)
      * Space Complexity: O(k) 
      */ 
