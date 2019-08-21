@@ -17,57 +17,55 @@ public class N_Queens_51 {
      * Times the O(N) for function 'addRusult'
      * Total time complexity: O(N! * N)
      */ 
-    List<List<String>> ret;
-    char[][] board;   // Current board
-    boolean[] column; 
-    boolean[] dia1;   // Left to right  index = row + col
-    boolean[] dia2;   // Right to left  index = row - col + n - 1
+    boolean[] col;
+    boolean[] hill; // low to high: row + col = const
+    boolean[] dale; // high to low: row - col = const
+    
+    List<List<String>> res;
+    char[][] board;
     
     public List<List<String>> solveNQueens(int n) {
-        ret = new ArrayList<>();
-        column = new boolean[n];
-        dia1 = new boolean[n * 2 - 1];
-        dia2 = new boolean[n * 2 - 1];
+        col = new boolean[n];
+        hill = new boolean[n * 2 - 1];
+        dale = new boolean[n * 2 - 1];
+        res = new ArrayList<>();
         board = new char[n][n];
         
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++)
                 board[i][j] = '.';
         }
-        
-        putQueens(0, n);
-        return ret;
+        putQueen(0, n);
+        return res;
     }
     
-    public void putQueens(int index, int n){
-        if(index == n){
-            addResult(n);
+    public void putQueen(int row, int n) {
+        if(row == n){ 
+            add2Res(n);
             return;
         }
         
         for(int i = 0; i < n; i++){
-            if(!column[i] && !dia1[index + i] && !dia2[index - i + n - 1]){
-                column[i] = true;
-                dia1[index + i] = true;            
-                dia2[index - i + n - 1] = true;
-                board[index][i] = 'Q';               
-                
-                putQueens(index+1, n);
-                
-                column[i] = false;
-                dia1[index + i] = false;            
-                dia2[index - i + n - 1] = false;
-                board[index][i] = '.';               
-            }
+            if(col[i] || hill[i + row] || dale[row - i + n - 1]) continue;
+            setBoard(row, i, true, n);
+            putQueen(row + 1, n);
+            setBoard(row, i, false, n);
         }
     }
     
-    public void addResult(int n){
-        List<String> solution = new ArrayList<>();
+    public void add2Res(int n) {
+        List<String> sol = new ArrayList<>();
         for(int i = 0; i < n; i++){
-            String rowStr = String.valueOf(board[i]);
-            solution.add(rowStr);
+            String row = String.valueOf(board[i]);
+            sol.add(row);
         }
-        ret.add(solution);
+        res.add(sol);
+    }
+    
+    public void setBoard(int r, int c, boolean status, int n){
+        board[r][c] = status == true ? 'Q' : '.';
+        col[c] = status;
+        hill[r + c] = status;
+        dale[r - c + n - 1] = status;
     }
 }
