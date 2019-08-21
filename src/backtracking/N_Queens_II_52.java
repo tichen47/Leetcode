@@ -31,7 +31,7 @@ public class N_Queens_II_52 {
     }
     
     
-    public void setBoard(int r, int c, boolean status, int n){
+    public void setBoard(int r, int c, boolean status, int n) {
         col[c] = status;
         hill[r + c] = status;
         dale[r - c + n - 1] = status;

@@ -40,19 +40,19 @@ public class Subsets_II_90 {
         List<List<Integer>> res = new ArrayList<>();
         res.add(new ArrayList<>());
         
-        int begin = 0; // If the nums[i] equals to nums[i-1], nums[i] will only add to subsets which contain nums[i-1]
-                       // res[begin, len) are all the subsets which contains nums[i-1]  
+        int start = 0; // If the nums[i] equals to nums[i-1], nums[i] will only add to subsets which contain nums[i-1]
+                       // res[start, len) are all the subsets which contains nums[i-1]  
                        // If nums[i] does not equal to nums[i-1], nums[i] will add to all subsets -> begin = 0
         
         for(int i = 0; i < nums.length; i++){
-            if(i != 0 && nums[i] != nums[i-1]) begin = 0;
+            if(i != 0 && nums[i] != nums[i-1]) start = 0;
             int len = res.size();
-            for(int j = begin; j < len; j++){
+            for(int j = start; j < len; j++){
                 List<Integer> tempLs = new ArrayList<>(res.get(j));
                 tempLs.add(nums[i]);
                 res.add(tempLs);
             }
-            begin = len;
+            start = len;
         }
         
         return res;

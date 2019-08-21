@@ -10,8 +10,7 @@ public class Combination_Sum_III_216 {
      */ 
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> res = new ArrayList<>();
-        List<Integer> cur = new ArrayList<>();
-        dfs(res, cur, k, n, 1);
+        dfs(res, new ArrayList<>(), k, n, 1);
         return res;
     }
     

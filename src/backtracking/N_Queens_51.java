@@ -53,6 +53,13 @@ public class N_Queens_51 {
         }
     }
     
+    public void setBoard(int r, int c, boolean status, int n){
+        board[r][c] = status == true ? 'Q' : '.';
+        col[c] = status;
+        hill[r + c] = status;
+        dale[r - c + n - 1] = status;
+    }
+    
     public void add2Res(int n) {
         List<String> sol = new ArrayList<>();
         for(int i = 0; i < n; i++){
@@ -62,10 +69,4 @@ public class N_Queens_51 {
         res.add(sol);
     }
     
-    public void setBoard(int r, int c, boolean status, int n){
-        board[r][c] = status == true ? 'Q' : '.';
-        col[c] = status;
-        hill[r + c] = status;
-        dale[r - c + n - 1] = status;
-    }
 }
