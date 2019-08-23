@@ -25,13 +25,14 @@ public class Find_Peak_Element_162 {
      * Space Complexity: O(1)
      */
     public int findPeakElement2(int[] nums) {
-        int left = 0, right = nums.length - 1;
-        
-        while(left < right){
-            int mid = left + (right - left) / 2;
-            if(nums[mid] > nums[mid+1]) right = mid;
-            else left = mid + 1;
+        int l = 0, r = nums.length - 1;
+        while(l < r){
+            int mid = l + (r - l) / 2;
+            if(nums[mid] < nums[mid + 1])
+                l = mid + 1;
+            else
+                r = mid;
         }
-        return left;
+        return l;
     }
 }
