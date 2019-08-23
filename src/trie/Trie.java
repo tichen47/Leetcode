@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Trie {
     // Problem 208
+    // Can use char[26] instead of map to save space
     class TreeNode {
         boolean isWord;
         Map<Character, TreeNode> map;
