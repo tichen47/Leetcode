@@ -26,13 +26,13 @@ public class Intersection_of_Two_Linked_Lists_160 {
      * Solution: Two Pointer
      * Time Complexity: O(M + N)
      * Space Complexity: O(1) 
-     */ 
+     */
     public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
-        
         ListNode a = headA;
         ListNode b = headB;
-        
         while(a != b){
+            // Cant use a.next == null
+            // The loop will never stop if there is no intersection
             a = a == null ? headB : a.next;
             b = b == null ? headA : b.next;
         }
