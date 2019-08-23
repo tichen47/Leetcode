@@ -3,37 +3,30 @@ package tree;
 import java.util.*;
 
 public class Binary_Search_Tree_Iterator_173 {
-    TreeNode root;
     Deque<TreeNode> stack;
-    
-    // Modify class name here for submission
+    TreeNode cur;
+
     public Binary_Search_Tree_Iterator_173(TreeNode root) {
         stack = new LinkedList<>();
-        this.root = root;
+        cur = root;
     }
-    
+
     /** @return the next smallest number */
     public int next() {
-        if(root == null){
-            root = stack.pop();
-            int ret = root.val;
-            root = root.right;
-            return ret;
+        while(cur != null){
+            stack.push(cur);
+            cur = cur.left;
         }
-        else{
-            while(root != null){
-                stack.push(root);
-                root = root.left;
-            }
-            return next();
-        }
+        TreeNode temp = stack.pop();
+        cur = temp.right;
+        return temp.val;
     }
-    
+
     /** @return whether we have a next smallest number */
     public boolean hasNext() {
-        return !(stack.isEmpty() && root == null);
+        return !(stack.isEmpty() && cur == null);
     }
-    
+
     /**
      * Your BSTIterator object will be instantiated and called as such:
      * BSTIterator obj = new BSTIterator(root);
