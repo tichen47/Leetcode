@@ -15,4 +15,5 @@ public class Minimum_Cost_to_Connect_Sticks_1167 {
         }
         return sum;
     }
+
 }
