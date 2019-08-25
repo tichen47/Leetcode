@@ -22,6 +22,21 @@ public class Merge_Sorted_Array_88 {
 
     }
 
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;
+        int j = n - 1;
+        while(i >= 0 && j >= 0){
+            int pos = i + j + 1;
+            if(nums1[i] > nums2[j]) nums1[pos] = nums1[i--];
+            else nums1[pos] = nums2[j--];
+        }
+        if(i < 0)
+            while(j >= 0){
+                nums1[j] = nums2[j];
+                j--;
+            }
+    }
+
     public static void main(String[] args) {
         int[] nums1 = { 1, 2, 3, 0, 0, 0 };
         int[] nums2 = { 2, 5, 6 };
