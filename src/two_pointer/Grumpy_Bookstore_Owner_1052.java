@@ -1,4 +1,4 @@
-package sliding_window;
+package two_pointer;
 
 public class Grumpy_Bookstore_Owner_1052 {
     /*
