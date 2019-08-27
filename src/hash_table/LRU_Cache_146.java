@@ -46,7 +46,7 @@ public class LRU_Cache_146 {
     private int size;
     private int capacity;
 
-    public LRUCache(int capacity) {
+    public LRU_Cache_146(int capacity) {
         cache = new HashMap<>();
         head = new ListNode(-1, -1);
         tail = new ListNode(-1, -1);
