@@ -22,18 +22,15 @@ public class LRU_Cache_146 {
         head.next = node;
 
         cache.put(node.key, node);
-        size++;
     }
 
     private void removeNode(ListNode node) {
-        if(size <= 0) return;
         ListNode prev = node.prev;
         ListNode next = node.next;
         prev.next = next;
         next.prev = prev;
 
         cache.remove(node.key);
-        size--;
     }
 
     private void moveToHead(ListNode node) {
@@ -43,15 +40,13 @@ public class LRU_Cache_146 {
 
     private Map<Integer, ListNode> cache;
     private ListNode head, tail;
-    private int size;
     private int capacity;
 
     public LRU_Cache_146(int capacity) {
         cache = new HashMap<>();
-        head = new ListNode(-1, -1);
-        tail = new ListNode(-1, -1);
+        head = new ListNode(0, 0);
+        tail = new ListNode(0, 0);
         this.capacity = capacity;
-        size = 0;
 
         head.next = tail;
         tail.prev = head;
@@ -69,7 +64,7 @@ public class LRU_Cache_146 {
             ListNode node = new ListNode(key, value);
             addNode(node);
 
-            if(size > capacity)
+            if(cache.size() > capacity)
                 removeNode(tail.prev);
         } else {
             ListNode node = cache.get(key);
