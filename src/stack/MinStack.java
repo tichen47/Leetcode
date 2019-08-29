@@ -6,7 +6,6 @@ public class MinStack {
     // Solution 1: One stack
     Deque<Integer> stack;
     int min;
-
     /** initialize your data structure here. */
     public MinStack() {
         stack = new LinkedList<>();
@@ -22,7 +21,7 @@ public class MinStack {
     }
 
     public void pop() {
-        if(stack.pop() == min)
+        if(stack.pop().intValue() == min)
             min = stack.pop();
     }
 
