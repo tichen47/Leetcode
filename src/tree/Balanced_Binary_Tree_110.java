@@ -9,7 +9,7 @@ public class Balanced_Binary_Tree_110 {
      */
     public boolean isBalanced(TreeNode root) {
         if(root == null) return true;
-        
+
         int l = depth(root.left);
         int r = depth(root.right);
         
