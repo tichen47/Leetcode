@@ -46,5 +46,35 @@ public class K_Closest_Points_to_Origin_973 {
         return res;
     }
 
-    // Solution: Quick Select need to be implemented
+    /*
+     * Solution: Sort
+     * Time Complexity: O(N)
+     * Space Complexity: O(N)
+     * In quick sort, we need to do recursion in each part
+     * but in quick select, we can throw the one of the part and do the recursion in the rest of the part.
+     * Therefore, the time complexity of quick select is
+     * T(t) = 2T(t) - T(t) = c(2n + n + n/2 + n/4 + ... + 2) - c *(n + n/2 + n/4 + n/8 + ... + 1) = 2cn -1 = O(n).
+     */
+    public int[][] kClosest3(int[][] points, int K) {
+        int left = 0, right = points.length - 1;
+        while(left < right) {
+            int m = helper(points, left, right);
+            if(m > K) right = m;
+            else left = m + 1;
+        }
+
+        return Arrays.copyOfRange(points, 0, K);
+    }
+
+    public int helper(int[][] points, int l, int r) {
+        int[] pivot = points[l];
+        while(l < r) {
+            while(l < r && getDistance(pivot) <= getDistance(points[r])) r--;
+            points[l] = points[r];
+            while(l < r && getDistance(pivot) > getDistance(points[l])) l++;
+            points[r] = points[l];
+        }
+        points[l] = pivot;
+        return l;
+    }
 }
