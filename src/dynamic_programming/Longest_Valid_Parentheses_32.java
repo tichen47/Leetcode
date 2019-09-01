@@ -10,30 +10,28 @@ public class Longest_Valid_Parentheses_32 {
      * Space Complexity: O(N)
      */
     public int longestValidParentheses(String s) {
-        int res = 0;
         char[] str = s.toCharArray();
-        int[] dp = new int[str.length];
+        int[] dp = new int[s.length()];
+        int res = 0;
+        for(int i = 1; i < str.length; i++) {
+            if(str[i] == '(') continue;
 
-        for(int i = 1; i < str.length; i++){
-
-            if(str[i] == ')') {
-                if (str[i - 1] == '(')
-                    dp[i] = i >= 2 ? dp[i - 2] + 2 : 2;
-
-                else if (i - dp[i - 1] > 0 && str[i - dp[i - 1] - 1] == '(') {
-                    int prev = i - dp[i - 1] - 2;
-                    int prevLen = prev < 0 ? 0 : dp[prev];
-                    dp[i] = dp[i - 1] + 2 + prevLen;
+            if(str[i - 1] == '(') // ...()
+                dp[i] = i >= 2 ? dp[i-2] + 2 : 2;
+            else { // ...))
+                int prevIndex = i - dp[i - 1] - 1;
+                if(prevIndex >= 0 && str[prevIndex] == '(') {
+                    int prevLen = prevIndex > 0 ? dp[prevIndex - 1] : 0;
+                    dp[i] = dp[i - 1] + prevLen + 2;
                 }
             }
-
             res = Math.max(res, dp[i]);
         }
         return res;
     }
 
     /*
-     * Solution: DP
+     * Solution: Stack
      * Time Complexity: O(N)
      * Space Complexity: O(N)
      */
