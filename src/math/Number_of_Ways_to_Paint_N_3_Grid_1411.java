@@ -2,7 +2,7 @@ package math;
 
 public class Number_of_Ways_to_Paint_N_3_Grid_1411 {
     public int numOfWays(int n) {
-        int mod = 100000000 + 7;
+        int mod = (int)1e9 + 7;
         if(n == 1) return 12;
         if(n == 2) return 54;
         int t1 = 30;
